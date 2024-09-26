@@ -12,6 +12,13 @@
   require('super-commit').setup()
   ```
 
+## Test
+
+```bash
+nvim --headless --noplugin -u tests/minimal_init.lua -c \
+  "PlenaryBustedDirectory tests {minimal_init = 'tests/minimal_init.lua'}"
+```
+
 ## Before Contribution
 
 Use `pre-commit`. Follow the [official Quick start][1].
