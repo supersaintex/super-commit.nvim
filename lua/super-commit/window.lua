@@ -6,7 +6,7 @@ function M.set_autocmd()
   M.augroup = vim.api.nvim_create_augroup('SuperCommitWindow', {})
   vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
     group = M.augroup,
-    pattern = '*.txt',
+    pattern = '*.super',
     -- pattern = 'COMMIT_EDITMSG',
     callback = function()
       window_open.double_vertical()
