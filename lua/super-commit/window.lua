@@ -1,4 +1,5 @@
 local window_open = require('super-commit/window/open')
+local git_cmds = require('super-commit/git/commands')
 
 local M = {}
 
@@ -10,6 +11,8 @@ function M.set_autocmd()
     -- pattern = 'COMMIT_EDITMSG',
     callback = function()
       window_open.double_vertical()
+      local bufnum = 4
+      git_cmds.show_git_status(bufnum)
     end,
   })
 end
