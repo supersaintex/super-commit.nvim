@@ -10,4 +10,8 @@ function M.show_git_status(bufnum)
   M.show_command_output(bufnum, "git status")
 end
 
+function M.show_git_diff(bufnum)
+  M.show_command_output(bufnum, "git diff")
+end
+
 return M
