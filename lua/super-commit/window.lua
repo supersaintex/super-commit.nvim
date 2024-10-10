@@ -10,9 +10,8 @@ function M.set_autocmd()
     pattern = '*.super',
     -- pattern = 'COMMIT_EDITMSG',
     callback = function()
-      window_open.double_vertical()
-      local bufnum = 4
-      git_cmds.show_git_status(bufnum)
+      local bufnum_table = window_open.double_vertical()
+      git_cmds.show_git_status(bufnum_table[3])
     end,
   })
 end
