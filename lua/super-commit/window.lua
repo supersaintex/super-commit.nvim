@@ -11,8 +11,10 @@ function M.set_autocmd()
     -- pattern = 'COMMIT_EDITMSG',
     callback = function()
       window_open.double_vertical()
-      local bufnum = 4
-      git_cmds.show_git_status(bufnum)
+      local status_num = 3
+      local diff_num = 2
+      git_cmds.show_git_status(status_num)
+      git_cmds.show_git_diff(diff_num)
     end,
   })
 end
