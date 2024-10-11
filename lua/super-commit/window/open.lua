@@ -16,8 +16,13 @@ function M.setup()
   vim.cmd('wincmd j')
   vim.cmd('enew')
   local bufnum_3 = vim.api.nvim_get_current_buf();
+  vim.cmd('wincmd l')
+  vim.cmd('rightbelow split')
+  vim.cmd('wincmd j')
+  vim.cmd('enew')
+  local bufnum_4 = vim.api.nvim_get_current_buf();
 
-  local bufnum_table = {bufnum_1, bufnum_2, bufnum_3}
+  local bufnum_table = {bufnum_1, bufnum_2, bufnum_3, bufnum_4}
   return bufnum_table
 end
 
