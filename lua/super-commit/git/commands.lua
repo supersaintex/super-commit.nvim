@@ -6,8 +6,10 @@ function M.show_command_output(bufnum, command)
   vim.api.nvim_buf_set_lines(bufnum, 0, -1, false, output_table)
 end
 
-function M.show_git_status(bufnum)
-  M.show_command_output(bufnum, "git status")
-end
+local commands = {}
+commands[3] = "git status"
+commands[4] = "git diff --name-only --cached"
+
+M.commands = commands
 
 return M
