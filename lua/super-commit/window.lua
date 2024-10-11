@@ -11,7 +11,10 @@ function M.set_autocmd()
     -- pattern = 'COMMIT_EDITMSG',
     callback = function()
       local bufnum_table = window_open.setup()
-      git_cmds.show_git_status(bufnum_table[3])
+      local commands = git_cmds.commands
+      for k, cmd in pairs(commands) do
+          git_cmds.show_command_output(bufnum_table[k], cmd)
+      end
     end,
   })
 end
