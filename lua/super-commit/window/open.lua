@@ -5,7 +5,7 @@ function M.single_vertical()
   vim.cmd('enew')
 end
 
-function M.double_vertical()
+function M.setup()
   local bufnum_1 = vim.api.nvim_get_current_buf();
   vim.cmd('rightbelow vsplit')
   vim.cmd('wincmd l')
