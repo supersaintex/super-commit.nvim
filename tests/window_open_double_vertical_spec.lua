@@ -4,7 +4,7 @@ describe('window.open', function()
     local ini_buf_num = #vim.api.nvim_list_bufs()
     local ini_win_num = #vim.api.nvim_list_wins()
 
-    window_open.double_vertical()
+    window_open.setup()
 
     local new_buf_num = #vim.api.nvim_list_bufs()
     local new_win_num = #vim.api.nvim_list_wins()
