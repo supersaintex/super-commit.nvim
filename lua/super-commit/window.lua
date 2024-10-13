@@ -15,6 +15,11 @@ function M.set_autocmd()
       for k, cmd in pairs(commands) do
           git_cmds.show_command_output(bufnum_table[k], cmd)
       end
+      vim.api.nvim_set_keymap(
+          'n',
+          '<CR>',
+          [[<Cmd>lua require('super-commit/filepath/get').get()<CR>]],
+          { noremap = true, silent = true })
     end,
   })
 end
