@@ -18,8 +18,9 @@ function M.set_autocmd()
       vim.api.nvim_set_keymap(
           'n',
           '<CR>',
-          [[<Cmd>lua require('super-commit/filepath/get').get()<CR>]],
-          { noremap = true, silent = true })
+          [[<Cmd>lua require('super-commit/keymap').enter_in_normalmode()<CR>]],
+          { noremap = true, silent = true }
+	)
     end,
   })
 end

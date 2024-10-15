@@ -5,6 +5,8 @@ function M.single_vertical()
   vim.cmd('enew')
 end
 
+M.bufnums ={}
+
 function M.setup()
   local bufnum_1 = vim.api.nvim_get_current_buf();
   vim.cmd('rightbelow vsplit')
@@ -23,6 +25,7 @@ function M.setup()
   local bufnum_4 = vim.api.nvim_get_current_buf();
 
   local bufnum_table = {bufnum_1, bufnum_2, bufnum_3, bufnum_4}
+  M.bufnums = bufnum_table
   return bufnum_table
 end
 

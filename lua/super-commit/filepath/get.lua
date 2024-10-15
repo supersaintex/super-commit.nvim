@@ -15,7 +15,6 @@ function M.get()
        cursol_line_no,
        false)
    local path = paths[1]
-   print(path)
    return path
 end
 
