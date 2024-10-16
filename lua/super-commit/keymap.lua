@@ -5,7 +5,7 @@ local M = {}
 
 function M.enter_in_normalmode()
     git_cmds.show_diff_cmd_output(
-        window_open.bufnums[2],
+        window_open.bufnum_table[2],
         vim.api.nvim_get_current_line()
     )
 end
