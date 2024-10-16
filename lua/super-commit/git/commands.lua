@@ -10,11 +10,9 @@ function M.show_diff_cmd_output(bufnum, path)
   M.show_command_output(bufnum, "git diff --cached ".. path)
 end
 
-local commands = {}
-commands[2] = "echo Enter the below file path."
-commands[3] = "git status"
-commands[4] = "git diff --name-only --cached"
-
-M.commands = commands
+M.commands = {}
+M.commands[2] = "echo Enter the below file path."
+M.commands[3] = "git status"
+M.commands[4] = "git diff --name-only --cached"
 
 return M
