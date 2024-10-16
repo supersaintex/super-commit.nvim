@@ -11,7 +11,7 @@ function M.show_diff_cmd_output(bufnum, path)
 end
 
 local commands = {}
-commands[2] = "echo select a file under window"
+commands[2] = "echo Enter the below file path."
 commands[3] = "git status"
 commands[4] = "git diff --name-only --cached"
 
