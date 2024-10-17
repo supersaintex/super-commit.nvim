@@ -10,8 +10,17 @@ function M.set_autocmd()
     pattern = '*.super',
     -- pattern = 'COMMIT_EDITMSG',
     callback = function()
-      local bufnum_table = window_open.double_vertical()
-      git_cmds.show_git_status(bufnum_table[3])
+      local bufnum_table = window_open.setup()
+      local commands = git_cmds.commands
+      for k, cmd in pairs(commands) do
+          git_cmds.show_command_output(bufnum_table[k], cmd)
+      end
+      vim.api.nvim_set_keymap(
+          'n',
+          '<CR>',
+          [[<Cmd>lua require('super-commit/git/keymap').setup()<CR>]],
+          { noremap = true, silent = true }
+	)
     end,
   })
 end

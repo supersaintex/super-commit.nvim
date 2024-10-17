@@ -9,5 +9,6 @@ globals = {
   "os",
   "print",
   "require",
-  "vim"
+  "vim",
+  "pairs"
 }
