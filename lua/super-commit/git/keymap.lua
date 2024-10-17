@@ -3,7 +3,7 @@ local git_cmds = require('super-commit/git/commands')
 
 local M = {}
 
-function M.enter_in_normalmode()
+function M.setup()
     git_cmds.show_diff_cmd_output(
         window_open.bufnum_table[2],
         vim.api.nvim_get_current_line()
