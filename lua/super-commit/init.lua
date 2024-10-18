@@ -1,9 +1,9 @@
-local window = require('super-commit/window')
+local super_commit = require('super-commit/super-commit')
 
 local M = {}
 
 function M.setup()
-    window.setup()
+    super_commit.setup()
 end
 
 return M
