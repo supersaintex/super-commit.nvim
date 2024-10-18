@@ -3,6 +3,13 @@ local git_cmds = require('super-commit/git/commands')
 
 local M = {}
 
+function M.set_keymap()
+    git_cmds.show_diff_cmd_output(
+        window_open.bufnum_table[2],
+        vim.api.nvim_get_current_line()
+    )
+end
+
 function M.set_autocmd()
   M.augroup = vim.api.nvim_create_augroup('SuperCommitWindow', {})
   vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
@@ -19,7 +26,7 @@ function M.set_autocmd()
       vim.api.nvim_set_keymap(
           'n',
           '<CR>',
-          [[<Cmd>lua require('super-commit/git/keymap').setup()<CR>]],
+          [[<Cmd>lua require('super-commit/super-commit').set_keymap()<CR>]],
           { noremap = true, silent = true }
 	)
     end,
