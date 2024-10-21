@@ -1,11 +1,12 @@
 local window_open = require('super-commit/window/open')
 local git_cmds = require('super-commit/git/commands')
+local win_manage_table = git_cmds.win_manage_table
 
 local M = {}
 
 function M.show_selected_diff()
     git_cmds.show_diff_cmd_output(
-        window_open.bufnum_table[2],
+        win_manage_table["git-diff-init"].buf_num,
         vim.api.nvim_get_current_line()
     )
 end
@@ -18,11 +19,9 @@ function M.set_autocmd()
     -- pattern = 'COMMIT_EDITMSG',
     callback = function()
       window_open.setup()
-      local bufnum_table = window_open.bufnum_table
-      local commands = git_cmds.commands
-      for k, cmd in pairs(commands) do
-          git_cmds.show_command_output(bufnum_table[k], cmd)
-      end
+      git_cmds.show_command_output_v2(win_manage_table["git-status"])
+      git_cmds.show_command_output_v2(win_manage_table["filelist"])
+      git_cmds.show_command_output_v2(win_manage_table["git-diff-init"])
       vim.api.nvim_set_keymap(
           'n',
           '<CR>',

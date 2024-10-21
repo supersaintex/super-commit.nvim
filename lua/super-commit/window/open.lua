@@ -1,3 +1,6 @@
+local git_cmds = require('super-commit/git/commands')
+local win_manage_table = git_cmds.win_manage_table
+
 local M = {}
 
 function M.single_vertical()
@@ -5,26 +8,28 @@ function M.single_vertical()
   vim.cmd('enew')
 end
 
-M.bufnum_table ={}
 
 function M.setup()
-  local bufnum_1 = vim.api.nvim_get_current_buf();
+  win_manage_table["test-win"].buf_num =  vim.api.nvim_get_current_buf();
+  win_manage_table["test-win"].win_num =  vim.api.nvim_win_get_number(0);
   vim.cmd('rightbelow vsplit')
   vim.cmd('wincmd l')
   vim.cmd('enew')
-  local bufnum_2 = vim.api.nvim_get_current_buf();
+  win_manage_table["git-diff-init"].buf_num =  vim.api.nvim_get_current_buf();
+  win_manage_table["git-diff-init"].win_num =  vim.api.nvim_win_get_number(0);
   vim.cmd('wincmd h')
   vim.cmd('rightbelow split')
   vim.cmd('wincmd j')
   vim.cmd('enew')
-  local bufnum_3 = vim.api.nvim_get_current_buf();
+  win_manage_table["git-status"].buf_num =  vim.api.nvim_get_current_buf();
+  win_manage_table["git-status"].win_num =  vim.api.nvim_win_get_number(0);
   vim.cmd('wincmd l')
   vim.cmd('rightbelow split')
   vim.cmd('wincmd j')
   vim.cmd('enew')
-  local bufnum_4 = vim.api.nvim_get_current_buf();
+  win_manage_table["filelist"].buf_num =  vim.api.nvim_get_current_buf();
+  win_manage_table["filelist"].win_num =  vim.api.nvim_win_get_number(0);
 
-  M.bufnum_table = {bufnum_1, bufnum_2, bufnum_3, bufnum_4}
 end
 
 return M
