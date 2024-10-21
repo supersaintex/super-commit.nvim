@@ -1,4 +1,15 @@
 local M = {}
+M.init_commands = {"status", "filelist", "diff"}
+
+M.map_table = {}
+M.map_table["status"] = {winnum=nil, bufnum=nil, command="git status"}
+M.map_table["filelist"] = {winnum=nil, bufnum=nil,
+                          command="git diff --name-only --cached"}
+local file_select_suggestion = "To show git diff of files, " ..
+                            "select the file path in the window below, " ..
+                            "and press Enter."
+M.map_table["diff"] = {winnum=nil, bufnum=nil,
+                      command="echo " .. file_select_suggestion}
 
 function M.show_output(bufnum, command)
   local output_str =  vim.fn.system(command)
@@ -11,14 +22,5 @@ function M.show_diff(bufnum, rel_path)
   local abs_path = git_root .. "/" .. rel_path
   M.show_output(bufnum, "git diff --cached ".. abs_path)
 end
-
-local file_select_suggestion = "To show git diff of files, " ..
-                            "select the file path in the window below, " ..
-                            "and press Enter."
-
-M.command_table = {}
-M.command_table[2] = "echo " .. file_select_suggestion
-M.command_table[3] = "git status"
-M.command_table[4] = "git diff --name-only --cached"
 
 return M
