@@ -6,8 +6,10 @@ function M.show_output(bufnum, command)
   vim.api.nvim_buf_set_lines(bufnum, 0, -1, false, output_table)
 end
 
-function M.show_diff(bufnum, path)
-  M.show_output(bufnum, "git diff --cached ".. path)
+function M.show_diff(bufnum, rel_path)
+  local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+  local abs_path = git_root .. "/" .. rel_path
+  M.show_output(bufnum, "git diff --cached ".. abs_path)
 end
 
 local file_select_suggestion = "To show git diff of files, " ..
