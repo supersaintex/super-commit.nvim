@@ -1,20 +1,21 @@
 local window_open = require('super-commit/window/open')
+
 local git_cmds = require('super-commit/git/commands')
+local init_commands = git_cmds.init_commands
+local map_table = git_cmds.map_table
 
 local M = {}
 
 function M.init()
   window_open.setup()
-  local bufnum_table = window_open.bufnum_table
-  local command_table = git_cmds.command_table
-  for k, cmd in pairs(command_table) do
-    git_cmds.show_output(bufnum_table[k], cmd)
+  for _, k in pairs(init_commands) do
+    git_cmds.show_output(map_table[k].bufnum, map_table[k].command)
   end
 end
 
 function M.show_selected_diff()
     git_cmds.show_diff(
-        window_open.bufnum_table[2],
+        map_table["diff"].bufnum,
         vim.api.nvim_get_current_line()
     )
 end
