@@ -19,22 +19,24 @@ function M.show_selected_diff()
     )
 end
 
+function M.autocmd_callback()
+  M.init()
+  vim.api.nvim_set_keymap(
+      'n',
+      '<CR>',
+      '<Cmd>lua require("super-commit/super-commit")' ..
+      '.show_selected_diff()<CR>',
+      { noremap = true, silent = true }
+  )
+end
+
 function M.set_autocmd()
   M.augroup = vim.api.nvim_create_augroup('SuperCommitWindow', {})
   vim.api.nvim_create_autocmd({'BufNewFile', 'BufRead'}, {
     group = M.augroup,
     pattern = '*.super',
     -- pattern = 'COMMIT_EDITMSG',
-    callback = function()
-      M.init()
-      vim.api.nvim_set_keymap(
-          'n',
-          '<CR>',
-          '<Cmd>lua require("super-commit/super-commit")' ..
-          '.show_selected_diff()<CR>',
-          { noremap = true, silent = true }
-	)
-    end,
+    callback = M.autocmd_callback,
   })
 end
 
