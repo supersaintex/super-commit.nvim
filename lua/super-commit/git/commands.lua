@@ -23,4 +23,11 @@ function M.show_diff(bufnum, rel_path)
   M.show_output(bufnum, "git diff --cached ".. abs_path)
 end
 
+function M.show_selected_diff()
+    M.show_diff(
+      M.map_table["diff"].bufnum,
+      vim.api.nvim_get_current_line()
+    )
+end
+
 return M

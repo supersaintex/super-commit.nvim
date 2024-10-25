@@ -13,19 +13,12 @@ function M.init()
   end
 end
 
-function M.show_selected_diff()
-    git_cmds.show_diff(
-        map_table["diff"].bufnum,
-        vim.api.nvim_get_current_line()
-    )
-end
-
 function M.autocmd_callback()
   M.init()
   vim.api.nvim_set_keymap(
       'n',
       '<CR>',
-      '<Cmd>lua require("super-commit/super-commit")' ..
+      '<Cmd>lua require("super-commit/git/commands")' ..
       '.show_selected_diff()<CR>',
       { noremap = true, silent = true }
   )
