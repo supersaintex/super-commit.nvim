@@ -24,6 +24,12 @@ function M.autocmd_callback()
       '.show_selected_diff()<CR>',
       { noremap = true, silent = true }
   )
+  vim.api.nvim_set_keymap(
+      'n',
+      '<C-h>',
+      '<Cmd>lua require("super-commit.window.float").help()<CR>',
+      { noremap = true, silent = true }
+  )
 end
 
 function M.set_autocmd()
