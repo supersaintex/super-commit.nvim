@@ -1,15 +1,20 @@
-local M = {}
-M.init_commands = {"status", "filelist", "diff"}
+local buf_num = require('super-commit/buffer/open').number
 
-M.map_table = {}
-M.map_table["status"] = {winnum=nil, bufnum=nil, command="git status"}
-M.map_table["filelist"] = {winnum=nil, bufnum=nil,
-                          command="git diff --name-only --cached"}
+local M = {}
+
+local init_commands = {}
+init_commands["status"] = "git status"
+init_commands["filelist"] = "git diff --name-only --cached"
 local file_select_suggestion = "To show git diff of files, " ..
                             "select the file path in the window below, " ..
                             "and press Enter."
-M.map_table["diff"] = {winnum=nil, bufnum=nil,
-                      command="echo " .. file_select_suggestion}
+init_commands["diff"] = "echo " .. file_select_suggestion
+
+function M.show_init(k)
+  local output_str =  vim.fn.system(init_commands[k])
+  local output_table = vim.split(output_str, '\n')
+  vim.api.nvim_buf_set_lines(buf_num[k], 0, -1, false, output_table)
+end
 
 function M.show_output(bufnum, command)
   local output_str =  vim.fn.system(command)
@@ -25,7 +30,7 @@ end
 
 function M.show_selected_diff()
     M.show_diff(
-      M.map_table["diff"].bufnum,
+      buf_num["diff"],
       vim.api.nvim_get_current_line()
     )
 end
