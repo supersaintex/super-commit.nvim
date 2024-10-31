@@ -1,13 +1,15 @@
 local window_open = require('super-commit/window/open')
+local buffer_open = require('super-commit/buffer/open')
 local git_cmds = require('super-commit/git/commands')
 
 local M = {}
-
 local init_commands = {"status", "filelist", "diff"}
 
 function M.init()
-  window_open.setup()
+  M.bufids = buffer_open.setup()
+  M.winids = window_open.setup()
   for _, k in pairs(init_commands) do
+    vim.api.nvim_win_set_buf(M.winids[k], M.bufids[k])
     git_cmds.show_init(k)
   end
 end
