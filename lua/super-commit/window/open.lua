@@ -4,11 +4,6 @@ local init_commands = git_cmds.init_commands
 
 local M = {}
 
-function M.single_vertical()
-  vim.cmd('vsplit')
-  vim.cmd('enew')
-end
-
 local function set_current_number(k)
   map_table[k].bufnum =  vim.api.nvim_get_current_buf();
   map_table[k].winnum =  vim.api.nvim_win_get_number(0);
