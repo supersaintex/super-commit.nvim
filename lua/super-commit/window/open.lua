@@ -13,7 +13,7 @@ function M.setup()
   vim.cmd('rightbelow vsplit')
   vim.cmd('wincmd l')
   vim.cmd('enew')
-  set_current_number(init_commands[3])
+  set_current_number(init_commands[2])
   vim.cmd('wincmd h')
   vim.cmd('rightbelow split')
   vim.cmd('wincmd j')
@@ -23,7 +23,7 @@ function M.setup()
   vim.cmd('rightbelow split')
   vim.cmd('wincmd j')
   vim.cmd('enew')
-  set_current_number(init_commands[2])
+  set_current_number(init_commands[3])
 
 end
 

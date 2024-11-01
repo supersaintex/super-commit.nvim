@@ -6,7 +6,7 @@ M.map_table["status"] = {winnum=nil, bufnum=nil, command="git status"}
 M.map_table["filelist"] = {winnum=nil, bufnum=nil,
                           command="git diff --name-only --cached"}
 local file_select_suggestion = "To show git diff of files, " ..
-                            "select the file path in the window below, " ..
+                            "select the file path shown above, " ..
                             "and press Enter."
 M.map_table["diff"] = {winnum=nil, bufnum=nil,
                       command="echo " .. file_select_suggestion}
