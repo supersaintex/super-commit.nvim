@@ -10,5 +10,6 @@ globals = {
   "print",
   "require",
   "vim",
-  "pairs"
+  "pairs",
+  "math"
 }
