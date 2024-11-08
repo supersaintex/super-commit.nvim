@@ -4,8 +4,8 @@ local map_table = git_cmds.map_table
 local M = {}
 
 local function set_current_number(k)
-  map_table[k].bufnum =  vim.api.nvim_get_current_buf();
-  map_table[k].winnum =  vim.api.nvim_win_get_number(0);
+  map_table[k].bufid =  vim.api.nvim_get_current_buf();
+  map_table[k].winid =  vim.api.nvim_win_get_number(0);
 end
 
 local layout_2x2 = {
