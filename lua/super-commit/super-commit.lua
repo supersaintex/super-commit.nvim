@@ -9,8 +9,8 @@ local M = {}
 function M.init()
   window_open.setup()
   for _, k in pairs(init_commands) do
-    if map_table[k].bufnum then
-      git_cmds.show_output(map_table[k].bufnum, map_table[k].command)
+    if map_table[k].bufid then
+      git_cmds.show_output(map_table[k].bufid, map_table[k].command)
     end
   end
 end
