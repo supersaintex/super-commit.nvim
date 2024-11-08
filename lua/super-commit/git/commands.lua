@@ -1,20 +1,26 @@
 local M = {}
-M.init_cmds = {"status", "filelist", "diff"}
 
 M.map_table = {}
-M.map_table["status"] = {winid=nil, bufid=nil, cmd="git status"}
-M.map_table["filelist"] = {winid=nil, bufid=nil,
-                          cmd="git diff --name-only --cached"}
+M.map_table["status"] = {winid=nil, bufid=nil}
+M.map_table["filelist"] = {winid=nil, bufid=nil}
+M.map_table["diff"] = {winid=nil, bufid=nil}
+
+local init_cmds = {}
+init_cmds["status"] = "git status"
+init_cmds["filelist"] = "git diff --name-only --cached"
 local file_select_suggestion = "To show git diff of files, " ..
                             "select the file path shown above, " ..
                             "and press Enter."
-M.map_table["diff"] = {winid=nil, bufid=nil,
-                      cmd="echo " .. file_select_suggestion}
+init_cmds["diff"] = "echo " .. file_select_suggestion
 
 function M.show_output(bufid, cmd)
   local output_str =  vim.fn.system(cmd)
   local output_table = vim.split(output_str, '\n')
   vim.api.nvim_buf_set_lines(bufid, 0, -1, false, output_table)
+end
+
+function M.show_init_cmd(k)
+  M.show_output(M.map_table[k].bufid, init_cmds[k])
 end
 
 function M.show_diff(bufid, rel_path)

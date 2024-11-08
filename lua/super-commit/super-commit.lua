@@ -1,16 +1,16 @@
 local window_open = require('super-commit/window/open')
 
 local git_cmds = require('super-commit/git/commands')
-local init_cmds = git_cmds.init_cmds
 local map_table = git_cmds.map_table
 
 local M = {}
+local git_keys = {"status", "filelist", "diff"}
 
 function M.init()
   window_open.setup()
-  for _, k in pairs(init_cmds) do
+  for _, k in pairs(git_keys) do
     if map_table[k].bufid then
-      git_cmds.show_output(map_table[k].bufid, map_table[k].cmd)
+      git_cmds.show_init_cmd(k)
     end
   end
 end
