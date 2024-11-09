@@ -1,9 +1,9 @@
 local M = {}
 
 M.map_table = {}
-M.map_table["status"] = {winid=nil, bufid=nil}
-M.map_table["filelist"] = {winid=nil, bufid=nil}
-M.map_table["diff"] = {winid=nil, bufid=nil}
+M.map_table["status"] = {bufid=nil}
+M.map_table["filelist"] = {bufid=nil}
+M.map_table["diff"] = {bufid=nil}
 
 local init_cmds = {}
 init_cmds["status"] = "git status"

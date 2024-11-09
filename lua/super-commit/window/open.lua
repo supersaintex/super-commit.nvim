@@ -2,10 +2,10 @@ local git_cmds = require('super-commit/git/commands')
 local map_table = git_cmds.map_table
 
 local M = {}
+local winids = {}
 
 local function set_current_number(k)
   map_table[k].bufid =  vim.api.nvim_get_current_buf();
-  map_table[k].winid =  vim.api.nvim_win_get_number(0);
 end
 
 local layout_2x2 = {
@@ -28,7 +28,7 @@ local function split_by_ratio(k, ratio, is_above_split)
   if is_above_split then
     split = 'above'
   end
-  vim.api.nvim_open_win(0, true, {
+  winids[k] = vim.api.nvim_open_win(0, true, {
     split=split,
     win=0,
     height = math.floor(vim.api.nvim_win_get_height(0)*ratio),
@@ -50,7 +50,7 @@ local function vsplit_by_ratio(k, ratio, is_left_split)
   if is_left_split then
     split = 'left'
   end
-  vim.api.nvim_open_win(0, true, {
+  winids[k] = vim.api.nvim_open_win(0, true, {
     split=split,
     win=0,
     width = math.floor(vim.api.nvim_win_get_width(0)*ratio),
@@ -96,6 +96,10 @@ local function is_sufficient_height()
     return false
   end
   return true
+end
+
+function M.getid(k)
+  return winids[k]
 end
 
 function M.setup()
