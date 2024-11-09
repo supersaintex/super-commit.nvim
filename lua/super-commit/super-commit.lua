@@ -1,5 +1,4 @@
 local window_open = require('super-commit/window/open')
-
 local git_cmds = require('super-commit/git/commands')
 local map_table = git_cmds.map_table
 
