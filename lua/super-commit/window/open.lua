@@ -22,7 +22,7 @@ local layout_3x1 = {
 local required_editor_width = 80
 local required_editor_height = 20
 
-local function split_by_ratio(init_cmd, ratio, is_above_split)
+local function split_by_ratio(k, ratio, is_above_split)
   ratio = ratio or 0.5
   local split = 'below'
   if is_above_split then
@@ -35,7 +35,7 @@ local function split_by_ratio(init_cmd, ratio, is_above_split)
   })
 
   vim.cmd('enew')
-  set_current_number(init_cmd)
+  set_current_number(k)
 
   if split == 'below' then
     vim.cmd('wincmd k')
@@ -44,7 +44,7 @@ local function split_by_ratio(init_cmd, ratio, is_above_split)
   end
 end
 
-local function vsplit_by_ratio(init_cmd, ratio, is_left_split)
+local function vsplit_by_ratio(k, ratio, is_left_split)
   ratio = ratio or 0.5
   local split = 'right'
   if is_left_split then
@@ -57,7 +57,7 @@ local function vsplit_by_ratio(init_cmd, ratio, is_left_split)
   })
 
   vim.cmd('enew')
-  set_current_number(init_cmd)
+  set_current_number(k)
 
   if split == 'right' then
     vim.cmd('wincmd h')
