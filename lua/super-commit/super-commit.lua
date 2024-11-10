@@ -33,6 +33,19 @@ function M.show_selected_diff()
   vim.api.nvim_buf_set_lines(bufid, 0, -1, false, output)
 end
 
+function M.show_help()
+  window_open.help()
+  buffer.setup("help")
+  local bufid = buffer.getid("help")
+  local winid = window_open.getid("help")
+  local messages = {
+      "help of super commit",
+      "",
+      "Select a file from list and show git staged change."
+  }
+  attach_output_to_win(bufid, winid, messages)
+end
+
 function M.autocmd_callback()
   M.init()
   vim.api.nvim_set_keymap(
@@ -45,7 +58,8 @@ function M.autocmd_callback()
   vim.api.nvim_set_keymap(
       'n',
       '<C-h>',
-      '<Cmd>lua require("super-commit.window.float").help()<CR>',
+      '<Cmd>lua require("super-commit/super-commit")' ..
+      '.show_help()<CR>',
       { noremap = true, silent = true }
   )
 end
