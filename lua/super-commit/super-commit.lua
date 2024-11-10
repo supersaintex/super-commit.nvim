@@ -12,14 +12,18 @@ local function attach_output_to_win(bufid, winid, output)
   end
 end
 
+local function show_git(k)
+  buffer.setup(k)
+  local winid = window_open.getid(k)
+  local bufid = buffer.getid(k)
+  local output = git_cmds.get_init_cmd(k)
+  attach_output_to_win(bufid, winid, output)
+end
+
 function M.init()
   window_open.setup()
   for _, k in pairs(git_keys) do
-    buffer.setup(k)
-    local winid = window_open.getid(k)
-    local bufid = buffer.getid(k)
-    local output = git_cmds.get_init_cmd(k)
-    attach_output_to_win(bufid, winid, output)
+    show_git(k)
   end
 end
 
