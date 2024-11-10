@@ -100,4 +100,22 @@ function M.setup()
   open_2x2()
 end
 
+function M.help()
+  local screen_width = vim.o.columns
+  local screen_height = vim.o.lines
+  local width = 80
+  local height = 20
+  local opts = {
+    relative = "editor",
+    width = width,
+    height = height,
+    col = math.floor((screen_width - width) / 2),
+    row = math.floor((screen_height - height) / 2),
+    anchor = "NW",
+    style = "minimal",
+    border = "rounded"
+  }
+  winids["help"] = vim.api.nvim_open_win(0, true, opts)
+end
+
 return M
