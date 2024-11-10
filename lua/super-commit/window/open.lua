@@ -1,12 +1,5 @@
-local git_cmds = require('super-commit/git/commands')
-local map_table = git_cmds.map_table
-
 local M = {}
 local winids = {}
-
-local function set_current_number(k)
-  map_table[k].bufid =  vim.api.nvim_get_current_buf();
-end
 
 local layout_2x2 = {
   {'commit', 'filelist'},
@@ -34,9 +27,6 @@ local function split_by_ratio(k, ratio, is_above_split)
     height = math.floor(vim.api.nvim_win_get_height(0)*ratio),
   })
 
-  vim.cmd('enew')
-  set_current_number(k)
-
   if split == 'below' then
     vim.cmd('wincmd k')
   else
@@ -55,9 +45,6 @@ local function vsplit_by_ratio(k, ratio, is_left_split)
     win=0,
     width = math.floor(vim.api.nvim_win_get_width(0)*ratio),
   })
-
-  vim.cmd('enew')
-  set_current_number(k)
 
   if split == 'right' then
     vim.cmd('wincmd h')
