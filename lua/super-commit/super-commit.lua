@@ -1,17 +1,32 @@
 local window_open = require('super-commit/window/open')
+local buffer = require('super-commit/buffer')
 local git_cmds = require('super-commit/git/commands')
-local map_table = git_cmds.map_table
 
 local M = {}
 local git_keys = {"status", "filelist", "diff"}
 
+local function attach_output_to_win(bufid, winid, output)
+  if bufid and winid and output then
+    vim.api.nvim_buf_set_lines(bufid, 0, -1, false, output)
+    vim.api.nvim_win_set_buf(winid, bufid)
+  end
+end
+
 function M.init()
   window_open.setup()
   for _, k in pairs(git_keys) do
-    if map_table[k].bufid then
-      git_cmds.show_init_cmd(k)
-    end
+    buffer.setup(k)
+    local winid = window_open.getid(k)
+    local bufid = buffer.getid(k)
+    local output = git_cmds.get_init_cmd(k)
+    attach_output_to_win(bufid, winid, output)
   end
+end
+
+function M.show_selected_diff()
+  local bufid = buffer.getid("diff")
+  local output = git_cmds.get_diff(vim.api.nvim_get_current_line())
+  vim.api.nvim_buf_set_lines(bufid, 0, -1, false, output)
 end
 
 function M.autocmd_callback()
@@ -19,7 +34,7 @@ function M.autocmd_callback()
   vim.api.nvim_set_keymap(
       'n',
       '<CR>',
-      '<Cmd>lua require("super-commit/git/commands")' ..
+      '<Cmd>lua require("super-commit/super-commit")' ..
       '.show_selected_diff()<CR>',
       { noremap = true, silent = true }
   )
