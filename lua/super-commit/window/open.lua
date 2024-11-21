@@ -100,22 +100,30 @@ function M.setup()
   open_2x2()
 end
 
-function M.help()
+local float_config = {}
+
+float_config["help"] ={
+  width = 80,
+  height = 20,
+  -- set ratio value to center help window almost in the screen
+  vertical_pos_ratio = 0.25,
+  horizontal_pos_ratio = 0.15
+}
+
+function M.float(k)
   local screen_width = vim.o.columns
   local screen_height = vim.o.lines
-  local width = 80
-  local height = 20
   local opts = {
     relative = "editor",
-    width = width,
-    height = height,
-    col = math.floor((screen_width - width) / 2),
-    row = math.floor((screen_height - height) / 2),
+    width = float_config[k].width,
+    height = float_config[k].height,
+    col = screen_width * float_config[k].horizontal_pos_ratio,
+    row = screen_height * float_config[k].vertical_pos_ratio,
     anchor = "NW",
     style = "minimal",
     border = "rounded"
   }
-  winids["help"] = vim.api.nvim_open_win(0, true, opts)
+  winids[k] = vim.api.nvim_open_win(0, true, opts)
 end
 
 return M
