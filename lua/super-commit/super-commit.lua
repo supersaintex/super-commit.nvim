@@ -34,7 +34,7 @@ function M.show_selected_diff()
 end
 
 function M.show_help()
-  window_open.help()
+  window_open.float("help")
   buffer.setup("help")
   local bufid = buffer.getid("help")
   local winid = window_open.getid("help")
