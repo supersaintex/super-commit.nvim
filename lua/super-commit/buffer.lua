@@ -24,6 +24,10 @@ function M.setup(git_key)
   if (filetype[git_key]) then
     vim.api.nvim_set_option_value("filetype", filetype[git_key], {buf = bufids[git_key]})
   end
+  if (git_key ~= "commit") then
+    vim.api.nvim_set_option_value("readonly", true, {buf = bufids[git_key]})
+  end
+  vim.api.nvim_set_option_value("swapfile", false, {buf = bufids[git_key]})
 end
 
 return M
