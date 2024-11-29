@@ -1,9 +1,14 @@
+local user_config = require('super-commit/config/user-config')
+user_config.setup('debug', true);
+local D = require('super-commit/debug/debug').debug
 local window_open = require('super-commit/window/open')
 local buffer = require('super-commit/buffer')
 local git_cmds = require('super-commit/git/commands')
 
 local M = {}
 local git_keys = {"status", "filelist", "diff"}
+-- use case
+D("git_keys", git_keys)
 
 local function attach_output_to_win(bufid, winid, output)
   if bufid and winid and output then
