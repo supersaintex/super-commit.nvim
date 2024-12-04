@@ -54,6 +54,7 @@ local function vsplit_by_ratio(k, ratio, is_left_split)
 end
 
 local function open_2x2()
+  winids[layout_2x2[1][1]] = vim.api.nvim_get_current_win()
   split_by_ratio(layout_2x2[2][1], 0.6)
   vsplit_by_ratio(layout_2x2[1][2], 0.5)
   vim.cmd('wincmd j')
@@ -62,6 +63,8 @@ local function open_2x2()
 end
 
 local function open_3x1()
+  winids[layout_3x1[1][1]] = vim.api.nvim_get_current_win()
+  split_by_ratio(layout_2x2[2][1], 0.6)
   split_by_ratio(layout_3x1[2][1], 0.8)
   -- ratio should be the sum of the 2nd & 3rd row
   vim.cmd('wincmd j')

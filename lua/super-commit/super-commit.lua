@@ -46,6 +46,11 @@ function M.show_help()
   attach_output_to_win(bufid, winid, messages)
 end
 
+function M.move_to_commit_msg_window()
+  local winid = window_open.getid("commit")
+  vim.api.nvim_set_current_win(winid)
+end
+
 function M.autocmd_callback()
   M.init()
   vim.api.nvim_set_keymap(
@@ -60,6 +65,13 @@ function M.autocmd_callback()
       '<C-h>',
       '<Cmd>lua require("super-commit/super-commit")' ..
       '.show_help()<CR>',
+      { noremap = true, silent = true }
+  )
+  vim.api.nvim_set_keymap(
+      'n',
+      '<C-j>',
+      '<Cmd>lua require("super-commit/super-commit")' ..
+      '.move_to_commit_msg_window()<CR>',
       { noremap = true, silent = true }
   )
 end
